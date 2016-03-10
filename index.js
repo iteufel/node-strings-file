@@ -1,7 +1,10 @@
 var fs = require('fs');
 
 function parse(data, wantComments) {
-  var re = /(?:\/\*(.+)\*\/\n)?(.+)\s*\=\s*\"(.+)\"\;\n/gmi; 
+  if (data.indexOf('\n')=== -1) {
+    data += '\n';
+  }
+  var re = /(?:\/\*(.+)\*\/\n)?(.+)\s*\=\s*\"(.+)\"\;\n/gmi;
   var res = {}
   while ((m = re.exec(data)) !== null) {
     if (m.index === re.lastIndex) {
@@ -31,7 +34,7 @@ function compile(obj) {
       }
       data += '"' + i + '" = ' + '"' + obj[i]['value'] + '";\n';
     }else if (typeof obj[i] == 'string') {
-      data += '"' + i + '" = ' + '"' + obj[i] + '";\n';
+      data += '\n"' + i + '" = ' + '"' + obj[i] + '";\n';
     }
   }
   return data;
@@ -60,12 +63,12 @@ function readStringsSync(file, wantComments) {
   return parse(data, wantComments);
 }
 
-function writeStrings(obj, filename, callback) {
-  fs.writeFile(filename, compile(obj), 'ucs2', callback);
+function writeStrings(filename, data, callback) {
+  fs.writeFile(filename, compile(data), 'utf8', callback);
 }
 
-function writeStringsSync(obj, filename) {
-  return fs.writeFileSync(filename, compile(obj));
+function writeStringsSync(filename, data) {
+  return fs.writeFileSync(filename, compile(data));
 }
 
 exports.readStrings = readStrings;
