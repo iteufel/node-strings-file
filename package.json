@@ -1,0 +1,19 @@
+{
+  "name": "strings-file",
+  "version": "0.0.1",
+  "description": "Node.js module for processing ios/osx .strings files.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iteufel/node-strings-file.git"
+  },
+  "author": "Allan Amstadt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iteufel/node-strings-file/issues"
+  },
+  "homepage": "https://github.com/iteufel/node-strings-file#readme"
+}
