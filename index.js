@@ -32,9 +32,9 @@ function compile(obj) {
       if (obj[i]['comment'] && obj[i]['comment'].length > 0) {
         data += '\n\/*' + obj[i]['comment'] + '*\/\n';
       }
-      data += '"' + i + '" = ' + '"' + obj[i]['value'] + '";\n';
+      data += '"' + i + '" = ' + '"' + escapeString(obj[i]['value']) + '";\n';
     }else if (typeof obj[i] == 'string') {
-      data += '\n"' + i + '" = ' + '"' + obj[i] + '";\n';
+      data += '\n"' + i + '" = ' + '"' + escapeString(obj[i]) + '";\n';
     }
   }
   return data;
