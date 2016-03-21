@@ -1,4 +1,5 @@
 var fs = require('fs');
+var iconv = require('iconv-lite');
 
 function parse(data, wantComments) {
   if (data.indexOf('\n')=== -1) {
@@ -49,26 +50,26 @@ function unescapeString(str) {
 }
 
 function readStrings(file, callback, wantComments) {
-  fs.readFile(file, 'ucs2', function (err, data) {
+  fs.readFile(file, function (err, data) {
     if (err) {
       callback(err, null);
     }else {
-      callback(null, parse(data, wantComments));
+      callback(null, parse(iconv.decode(data, 'utf-16'), wantComments));
     }
   })
 }
 
 function readStringsSync(file, wantComments) {
-  var data = fs.readFileSync(file, 'ucs2');
+  var data = iconv.decode(fs.readFileSync(file), 'utf-16');
   return parse(data, wantComments);
 }
 
 function writeStrings(filename, data, callback) {
-  fs.writeFile(filename, compile(data), 'utf8', callback);
+  fs.writeFile(filename, iconv.encode(compile(data), 'utf-16'), 'binary', callback);
 }
 
 function writeStringsSync(filename, data) {
-  return fs.writeFileSync(filename, compile(data));
+  return fs.writeFileSync(filename, iconv.encode(compile(data), 'utf-16'));
 }
 
 exports.readStrings = readStrings;

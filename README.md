@@ -1,7 +1,7 @@
 #node-strings-file
 
 
-Node.js module for processing ios/osx `.strings` files.
+Node.js module for processing `utf-16` ios/osx `.strings` files.
 
 ## Installing with [npm](http://npmjs.org/)
 
