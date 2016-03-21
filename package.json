@@ -1,6 +1,6 @@
 {
   "name": "strings-file",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Node.js module for processing utf-16 ios/osx .strings files.",
   "main": "index.js",
   "scripts": {
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/iteufel/node-strings-file/issues"
   },
-  "homepage": "https://github.com/iteufel/node-strings-file#readme"
+  "homepage": "https://github.com/iteufel/node-strings-file#readme",
+  "dependencies": {
+    "iconv-lite": "^0.4.13"
+  }
 }
